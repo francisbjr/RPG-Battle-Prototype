@@ -15,6 +15,10 @@ const map = new Image()
 map.src = './images/Demo Town.png'
 
 map.onload = () => {
-    c.drawImage(map, -832, -600)
-    c.drawImage(playerImage, canvas.width / 2 - playerImage.width / 2, canvas.height / 2)
+    c.drawImage(map, -832, -620)
+    c.drawImage(
+        playerImage, 
+        canvas.width / 2 - playerImage.width / 2, 
+        canvas.height / 2 - playerImage.height / 2
+        )
 }
