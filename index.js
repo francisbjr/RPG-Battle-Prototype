@@ -11,14 +11,34 @@ c.fillRect(0,0, canvas.width, canvas.height)
 const playerImage = new Image()
 playerImage.src = './images/playerDown.png'
 
-const map = new Image()
-map.src = './images/Demo Town.png'
+const image = new Image()
+image.src = './images/Demo Town.png'
+
+// Renders map image every time the class is called on
+class Sprite {
+    constructor({ position, velocity, image }) {
+        this.position = position
+        this.image = image
+    }
+
+    draw() {
+        c.drawImage(this.image, -832, -620) 
+    }
+}
+
+const background = new Sprite({
+    position: {
+        x: -832,
+        y: -620
+    },
+    image: image
+})
 
 // Infinite animation loop
 function animate() {
     window.requestAnimationFrame(animate)
     //Center of map and player
-    c.drawImage(map, -832, -620) 
+    background.draw()
     c.drawImage(
         playerImage,
         // Cropping player image
