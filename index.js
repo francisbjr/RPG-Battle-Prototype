@@ -14,11 +14,20 @@ playerImage.src = './images/playerDown.png'
 const map = new Image()
 map.src = './images/Demo Town.png'
 
+//Center of map and player
 map.onload = () => {
-    c.drawImage(map, -832, -620)
+    c.drawImage(map, -832, -620) 
     c.drawImage(
-        playerImage, 
-        canvas.width / 2 - playerImage.width / 2, 
-        canvas.height / 2 - playerImage.height / 2
+        playerImage,
+        // Cropping player image
+        0,
+        0,
+        playerImage.width / 4,
+        playerImage.height,
+        // Actual Position of player
+        canvas.width / 2 - (playerImage.width / 4) / 2, 
+        canvas.height / 2 - playerImage.height / 2,
+        playerImage.width / 4,
+        playerImage.height,
         )
 }
