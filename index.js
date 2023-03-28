@@ -5,8 +5,47 @@ const c = canvas.getContext('2d')
 canvas.width = 1024
 canvas.height = 576
 
-c.fillStyle = 'white'
-c.fillRect(0,0, canvas.width, canvas.height)
+const collisionsMap = []
+// Slices array into smaller arrays of 70
+for (let i = 0; i < collisions.length; i += 70) {
+    collisionsMap.push(collisions.slice(i, 70 + i)) 
+}
+// Creates boundary tile every time the class is called on 
+class Boundary {
+    static width = 48
+    static height = 48
+    constructor(position) {
+        this.position = position
+        // Map is zoomed in 400%, original size of tiles are 12x12
+        // 12 * 4 = 48
+        this.width = 48
+        this.height = 48
+    }
+
+    draw() {
+        c.fillStyle = 'red'
+        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
+}
+
+const boundaries = []
+// Locates the boundary tiles
+collisionsMap.forEach((row, i) => {
+    row.forEach((symbol, j) => {
+        // IF the 'symbol' matches 1025
+        if (symbol === 1025)
+        boundaries.push(
+            new Boundary({
+                position: {
+                   x: j * Boundary.width,
+                   y: i * Boundary.height
+                }
+            })
+        )
+    })
+})
+
+console.log(boundaries)
 
 const playerImage = new Image()
 playerImage.src = './images/playerDown.png'
