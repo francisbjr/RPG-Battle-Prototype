@@ -14,8 +14,10 @@ playerImage.src = './images/playerDown.png'
 const map = new Image()
 map.src = './images/Demo Town.png'
 
-//Center of map and player
-map.onload = () => {
+// Infinite animation loop
+function animate() {
+    window.requestAnimationFrame(animate)
+    //Center of map and player
     c.drawImage(map, -832, -620) 
     c.drawImage(
         playerImage,
@@ -30,12 +32,6 @@ map.onload = () => {
         playerImage.width / 4,
         playerImage.height,
         )
-}
-
-// Infinite animation loop
-function animate() {
-    window.requestAnimationFrame(animate)
-    console.log('animate')
 }
 animate()
 
